@@ -143,13 +143,13 @@ const wchar_t* CGoldPrice::GetInfo(PluginInfoIndex index)
     case TMI_DESCRIPTION:
         return L"实时显示 goldprice.org 金价（美元/盎司 & 人民币/克），支持自动汇率";
     case TMI_AUTHOR:
-        return L"GoldPrice";
+        return L"hhelibeb";
     case TMI_COPYRIGHT:
-        return L"Copyright (C) 2026";
+        return L"Copyright (C) 2026 MIT License";
     case TMI_VERSION:
         return L"1.0.0";
     case TMI_URL:
-        return L"https://goldprice.org";
+        return L"https://github.com/hhelibeb/GoldPrice_TrafficMonitorPlugins";
     default:
         return L"";
     }
