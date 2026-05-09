@@ -1,7 +1,6 @@
 # Build output
 bin/
-*/Release/
-*/x64/Release/
+**/Release/
 *.user
 *.suo
 *.sln.docstates

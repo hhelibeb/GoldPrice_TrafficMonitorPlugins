@@ -147,7 +147,7 @@ const wchar_t* CGoldPrice::GetInfo(PluginInfoIndex index)
     case TMI_COPYRIGHT:
         return L"Copyright (C) 2026";
     case TMI_VERSION:
-        return L"1.10";
+        return L"1.0.0";
     case TMI_URL:
         return L"https://goldprice.org";
     default:
