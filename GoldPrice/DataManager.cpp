@@ -3,6 +3,10 @@
 
 #pragma comment(lib, "winhttp.lib")
 
+#ifndef WINHTTP_OPTION_ENABLE_CERT_REVOCATION_CHECK
+#define WINHTTP_OPTION_ENABLE_CERT_REVOCATION_CHECK 133
+#endif
+
 CDataManager& CDataManager::Instance()
 {
     static CDataManager instance;
@@ -43,6 +47,14 @@ bool CDataManager::HttpGet(const wchar_t* url, std::string& response)
     timeout = 15000;
     WinHttpSetOption(hRequest, WINHTTP_OPTION_RECEIVE_TIMEOUT, &timeout, sizeof(timeout));
 
+    // TLS 1.2+ 限制
+    DWORD protocols = WINHTTP_FLAG_SECURE_PROTOCOL_TLS1_2 | WINHTTP_FLAG_SECURE_PROTOCOL_TLS1_3;
+    WinHttpSetOption(hRequest, WINHTTP_OPTION_SECURE_PROTOCOLS, &protocols, sizeof(protocols));
+
+    // 证书吊销检查
+    BOOL revokeCheck = TRUE;
+    WinHttpSetOption(hRequest, WINHTTP_OPTION_ENABLE_CERT_REVOCATION_CHECK, &revokeCheck, sizeof(revokeCheck));
+
     bool success = false;
     if (WinHttpSendRequest(hRequest, WINHTTP_NO_ADDITIONAL_HEADERS, 0,
         WINHTTP_NO_REQUEST_DATA, 0, 0, 0) &&
@@ -81,6 +93,10 @@ bool CDataManager::ParseGoldJson(const std::string& json)
     char* end = nullptr;
     double price = strtod(colon, &end);
     if (end == colon) return false;
+
+    // 金价范围校验 (100 ~ 100,000 USD/oz)
+    if (price < 100.0 || price > 100000.0)
+        return false;
 
     m_goldPriceUsd = price;
     m_goldPriceCny = (m_goldPriceUsd * m_exchangeRate) / 31.1035;
