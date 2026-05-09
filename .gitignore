@@ -1,0 +1,25 @@
+# Build output
+bin/
+*/Release/
+*/x64/Release/
+*.user
+*.suo
+*.sln.docstates
+
+# Visual Studio
+.vs/
+
+# Build temp
+*.tlog
+*.log
+*.lastbuildstate
+*.idb
+*.pdb
+*.ilk
+*.exp
+*.lib
+*.res
+*.aps
+*.ipch
+*.iobj
+*.ipdb
