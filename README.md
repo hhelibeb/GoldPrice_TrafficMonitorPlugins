@@ -1,6 +1,6 @@
 # GoldPrice - TrafficMonitor 金价插件
 
-实时显示国际金价的 [TrafficMonitor](https://github.com/zhongyang219/TrafficMonitor) 插件。
+实时显示国际金价的 [TrafficMonitor](https://github.com/zhongyang219/TrafficMonitor) 插件，使用deepseek开发。
 
 ## 功能
 
