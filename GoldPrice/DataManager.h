@@ -19,12 +19,10 @@ public:
     // 选项设置
     int     m_refreshInterval = 60;    // 刷新间隔(秒)
     double  m_exchangeRate = 7.25;     // USD/CNY 汇率（默认，会被自动拉取覆盖）
-    bool    m_showChange = true;       // 是否显示涨跌
 
     // 运行时数据
     double      m_goldPriceUsd = 0.0;
     double      m_goldPriceCny = 0.0;
-    double      m_prevPrice = 0.0;
     bool        m_failed = false;
     SYSTEMTIME  m_updateTime = {};
     DWORD       m_lastFetchTick = 0;

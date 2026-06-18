@@ -50,7 +50,6 @@ msbuild GoldPrice.sln /p:Platform=Win32 /p:Configuration=Release
 在 TrafficMonitor → 插件管理 → 实时金价 → 选项中可调整:
 - 刷新间隔: 30/60/120/300 秒
 - 美元/人民币汇率: 可手动覆盖（自动汇率每隔1小时拉取）
-- 显示涨跌: 是否显示价格变动
 
 ## 文件结构
 

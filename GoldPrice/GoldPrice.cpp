@@ -81,8 +81,6 @@ static INT_PTR CALLBACK OptionsDlgProc(HWND hDlg, UINT msg, WPARAM wParam, LPARA
         swprintf_s(buf, L"%.4f", pData->m_exchangeRate);
         SetDlgItemTextW(hDlg, IDC_EXCHANGE_RATE, buf);
 
-        // 显示涨跌复选框
-        CheckDlgButton(hDlg, IDC_SHOW_CHANGE, pData->m_showChange ? BST_CHECKED : BST_UNCHECKED);
         return TRUE;
     }
 
@@ -103,8 +101,6 @@ static INT_PTR CALLBACK OptionsDlgProc(HWND hDlg, UINT msg, WPARAM wParam, LPARA
             double rate = _wtof(buf);
             if (rate >= 1.0 && rate <= 20.0)
                 pData->m_exchangeRate = rate;
-
-            pData->m_showChange = (IsDlgButtonChecked(hDlg, IDC_SHOW_CHANGE) == BST_CHECKED);
 
             pData->m_lastFetchTick = 0;
             pData->SaveConfig();

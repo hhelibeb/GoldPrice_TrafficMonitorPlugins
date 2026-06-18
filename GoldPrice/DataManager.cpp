@@ -150,9 +150,6 @@ bool CDataManager::FetchGoldPrice()
         return false;
     }
 
-    if (m_goldPriceUsd > 0.01)
-        m_prevPrice = m_goldPriceUsd;
-
     m_failed = false;
     m_lastFetchTick = GetTickCount();
     return true;
@@ -227,7 +224,7 @@ void CDataManager::LoadConfig(const std::wstring& configDir)
     m_configPath = configDir + L"\\GoldPrice.ini";
 
     m_refreshInterval = GetPrivateProfileIntW(L"Settings", L"RefreshInterval", 60, m_configPath.c_str());
-    m_showChange = GetPrivateProfileIntW(L"Settings", L"ShowChange", 1, m_configPath.c_str()) != 0;
+    if (m_refreshInterval < 30) m_refreshInterval = 30;   // 强制最小 30 秒，避免高频请求被 API 限流
 
     wchar_t buf[32] = {};
     GetPrivateProfileStringW(L"Settings", L"ExchangeRate", L"7.25", buf, 32, m_configPath.c_str());
@@ -245,9 +242,6 @@ void CDataManager::SaveConfig() const
     wchar_t buf[32];
     swprintf_s(buf, L"%d", m_refreshInterval);
     WritePrivateProfileStringW(L"Settings", L"RefreshInterval", buf, m_configPath.c_str());
-
-    swprintf_s(buf, L"%d", m_showChange ? 1 : 0);
-    WritePrivateProfileStringW(L"Settings", L"ShowChange", buf, m_configPath.c_str());
 
     swprintf_s(buf, L"%.4f", m_exchangeRate);
     WritePrivateProfileStringW(L"Settings", L"ExchangeRate", buf, m_configPath.c_str());
