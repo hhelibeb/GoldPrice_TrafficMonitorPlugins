@@ -143,7 +143,7 @@ const wchar_t* CGoldPrice::GetInfo(PluginInfoIndex index)
     case TMI_COPYRIGHT:
         return L"Copyright (C) 2026 MIT License";
     case TMI_VERSION:
-        return L"1.0.1";
+        return L"1.0.2";
     case TMI_URL:
         return L"https://github.com/hhelibeb/GoldPrice_TrafficMonitorPlugins";
     default:
