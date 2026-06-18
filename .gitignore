@@ -8,6 +8,9 @@ bin/
 # Visual Studio
 .vs/
 
+# Release artifacts
+GoldPrice_v*.zip
+
 # Build temp
 *.tlog
 *.log
@@ -22,3 +25,6 @@ bin/
 *.ipch
 *.iobj
 *.ipdb
+
+# Local dev config (per-machine build scripts, local env overrides)
+.pi/
